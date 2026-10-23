@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "MiniKeyboard Configurator",
+  "version": "0.1.0",
+  "identifier": "com.minikeyboard.configurator",
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "devUrl": null,
+    "frontendDist": "../src"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "MiniKeyboard Configurator",
+        "width": 1100,
+        "height": 720,
+        "resizable": true,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --autoplay-policy=no-user-gesture-required"
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "withGlobalTauri": true
+  },
+  "bundle": {
+    "active": false
+  }
+}

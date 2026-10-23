@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniKeyboard Configurator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand"><div class="logo"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="11" rx="3"/><path d="M7 11h.01M11 11h.01M15 11h.01M8 14.5h8"/></svg></div>MiniKeyboard</div>
+    <nav id="tabs">
+      <button data-tab="keys" class="active"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Keys</span></button>
+      <button data-tab="macros"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg><span>Macros</span></button>
+      <button data-tab="launchers"><svg class="i" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg><span>Actions</span></button>
+      <button data-tab="soundboard"><svg class="i" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/></svg><span>Soundboard</span></button>
+      <button data-tab="clipboard"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9z"/></svg><span>Clipboard</span></button>
+      <button data-tab="layerkeys"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg><span>Layers</span></button>
+      <button data-tab="lighting"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><span>Lighting</span></button>
+      <button data-tab="device"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><span>Device</span></button>
+      <button data-tab="settings"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>Settings</span></button>
+    </nav>
+    <div class="spacer"></div>
+    <span class="hint">Layer</span>
+    <div class="seg" id="layers"></div>
+    <div class="chip-status"><span id="dot" class="dot"></span><span id="status">Not connected</span></div>
+    <button class="btn" id="connect">Connect</button>
+  </header>
+
+  <main>
+    <section id="keys">
+      <div class="panel grow">
+        <h2>Layer <span id="layerNo"></span></h2>
+        <div id="grid"></div>
+        <div class="empty" id="gridEmpty">
+          <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="20" width="144" height="56" rx="12"/><rect x="22" y="34" width="22" height="16" rx="4"/><rect x="50" y="34" width="22" height="16" rx="4"/><rect x="78" y="34" width="22" height="16" rx="4"/><rect x="106" y="34" width="22" height="16" rx="4"/><rect x="22" y="56" width="106" height="10" rx="4"/></svg>
+          <h3>No keyboard connected</h3>
+          <p>Plug in your KEY_PRO and connect to start customising.</p>
+          <button class="btn primary big" id="emptyConnect">Connect keyboard</button>
+        </div>
+      </div>
+      <div class="panel inspector" id="inspector"></div>
+    </section>
+
+    <section id="macros" hidden>
+      <div class="panel list">
+        <div class="row between"><h2>Library</h2><button class="btn" id="macroNew">New</button></div>
+        <div id="macroList"></div>
+      </div>
+      <div class="panel grow" id="macroEditor"></div>
+    </section>
+
+    <section id="launchers" hidden>
+      <div class="panel list">
+        <h2>Key actions</h2>
+        <div class="row"><button class="btn" id="bindNew">New key action</button></div>
+        <div id="launchList"></div>
+      </div>
+      <div class="panel grow" id="launchEditor"></div>
+    </section>
+
+    <section id="clipboard" hidden>
+      <div class="panel list">
+        <h2>Clipboard</h2>
+        <div class="row"><button class="btn" id="clipNew">New text</button><button class="btn" id="clipFromClipboard">From clipboard</button></div>
+        <div id="clipList"></div>
+      </div>
+      <div class="panel grow" id="clipEditor"></div>
+    </section>
+
+    <section id="settings" hidden>
+      <div class="panel grow" id="settingsPanel"></div>
+    </section>
+
+    <section id="layerkeys" hidden>
+      <div class="panel list">
+        <h2>Layer keys</h2>
+        <div class="row"><button class="btn" id="layerNew">New layer key</button></div>
+        <div id="layerList"></div>
+      </div>
+      <div class="panel grow" id="layerEditor"></div>
+    </section>
+
+    <section id="soundboard" hidden>
+      <div class="panel grow">
+        <div class="row between"><h2>Soundboard</h2><div class="row"><button class="btn" id="sbStop">Stop all</button><button class="btn primary" id="sbAdd">Add sounds…</button></div></div>
+        <p class="hint">Your library of sounds. Use them in Key actions (on press, on release or while held), or bind one straight to a key.</p>
+        <div class="empty" id="sbEmpty"><h3>No sounds yet</h3><p>Add mp3, wav, ogg, flac or m4a files.</p></div>
+        <div id="sbGrid"></div>
+      </div>
+    </section>
+
+    <section id="lighting" hidden>
+      <div class="panel grow" id="lightPanel"></div>
+    </section>
+
+    <section id="device" hidden>
+      <div class="panel grow">
+        <h2>Keyboard</h2>
+        <dl id="info"></dl>
+        <div class="row">
+          <button class="btn" id="reread">Read from keyboard</button>
+          <button class="btn danger" id="reset">Reset keyboard…</button>
+        </div>
+        <h2>HID interfaces</h2>
+        <pre id="hidList" class="log"></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer id="writebar" hidden>
+    <span id="writeText"></span>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="discard">Discard</button>
+    <button class="btn primary" id="write">Write to keyboard</button>
+  </footer>
+  <div id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

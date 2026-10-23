@@ -1,0 +1,20 @@
+# Original vendor software and its extracted artwork (large, not ours)
+_Original/
+Images/
+
+# Build output and dependencies
+node_modules/
+app/src-tauri/target/
+app/src-tauri/gen/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.claude/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+*.log
