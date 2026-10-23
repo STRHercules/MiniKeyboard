@@ -1,9 +1,24 @@
 # MiniKeyboard
 
+<p align="center">
+  <img src="Images/Header.png" alt="MiniKey Studio: a fast RGB, macro, and key-mapping utility for compact keypads" width="760">
+</p>
+
+<p align="center">
+  <img src="Images/OSLogo.png" alt="MiniKey Studio, open source" height="84">
+  <img src="Images/WindowsLogo.png" alt="MiniKey Studio, Windows ready" height="84">
+</p>
+
 Configurator and reverse-engineering workspace for a small USB HID macro keyboard ("KEY_PRO",
 VID `0x514C` / `0x1189`, PID `0x88xx`) and its original configuration software.
 
+<p align="center">
+  <img src="Images/Poster.png" alt="MiniKey Studio: customize every key" width="380">
+</p>
+
 ## The configurator (`app/`)
+
+<img src="Images/Icon.png" align="right" width="150" alt="">
 
 A Tauri 2 / Rust desktop app with a plain HTML/CSS/JS front end.
 
@@ -19,6 +34,9 @@ Closing the window hides it to the system tray so key actions, sounds and layer 
 quit from the tray icon.
 
 ### Keys
+
+<img src="Images/MacroLogo.png" alt="Macro Mapping" width="420">
+
 Assign any key (or knob action) on any of the 3 layers: **Keystroke**, **Combination**,
 **Mouse** (clicks, wheel, with modifiers), **System** (volume, media, brightness, browser, apps) or
 **Macro**. Key capture lets you press the key instead of picking it. Changes are written to the
@@ -62,6 +80,9 @@ layers: the app rewrites the keys that differ between layers. Each switch is a f
 prefer toggle/go-to over hold.
 
 ### Lighting
+
+<img src="Images/RGBLogo.png" alt="RGB Profiles" width="420">
+
 Colour (7 presets) and animation per layer: Off, Static, Reactive, Reactive alternate, When pressed,
 Cycle (ignores the colour). Applied automatically. The keyboard cannot report its lighting and has
 no brightness control; both were probed on hardware.
@@ -77,7 +98,9 @@ export/import the whole library, reset app data.
 - `PROTOCOL.md` — the reverse-engineered HID protocol: enumeration, handshake, key slots, key
   modes, LED, plus the original app's type-10 (per-key RGB) paths.
 - `src/kb_client.py` — small Python HID client (auto-loads the 32/64-bit `hidapi` DLL).
-- `_Original/` — the original `MINI_KEYBOARD.exe`, its Qt 5.14 runtime and `hidapi` DLLs.
+- `_Original/` — the original `MINI_KEYBOARD.exe`, its Qt 5.14 runtime and `hidapi` DLLs (git-ignored).
+- `Images/` — artwork used here. `Icon_Solo.png` is the application icon; the files in
+  `app/src-tauri/icons/` are generated from it with `npx tauri icon ../Images/Icon_Solo.png`.
 
 ```bash
 python src/kb_client.py     # prints the opened VID/PID and the handshake
@@ -91,3 +114,7 @@ python src/kb_client.py     # prints the opened VID/PID and the handshake
   writing, reading back and restoring. The LED command comes from the original app's code.
 - Per-key RGB models (device type 10) are documented in `PROTOCOL.md` but not implemented in the app.
 - Custom firmware is not part of this repo: the MCU is unidentified and flashing is risky.
+
+<p align="center">
+  <img src="Images/SmallLogo.png" alt="MiniKey Studio" width="260">
+</p>

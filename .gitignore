@@ -1,6 +1,5 @@
-# Original vendor software and its extracted artwork (large, not ours)
+# Original vendor software (large, not ours)
 _Original/
-Images/
 
 # Build output and dependencies
 node_modules/
